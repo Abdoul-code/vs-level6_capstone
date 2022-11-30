@@ -1,0 +1,58 @@
+.officer-container{
+  display: flex;
+  justify-content: center;
+}
+
+.publicOfficer{
+    display: inline-block;
+    justify-content: center;
+    border: 1px solid black;
+    border-radius: 10px;
+    background: transparent;
+    margin-bottom: 20px;
+    padding: 20px 20px;
+    width: 400px;
+    grid-template-rows: 100px 100px;
+    margin: 80px 80px;
+    box-shadow: 5px 5px 10px;
+}
+
+.publicOfficer h2{
+    font-size: 17px;
+}
+.delete-btn{
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    margin-bottom: 20px;
+    height:30px;
+    width: 100px;
+    padding: 10px 10px;
+    border:1px solid black;
+    cursor: pointer;
+    border-radius: 10px;
+    background-color:rgba(255, 0, 0, 0.386);
+}
+
+.delete-btn:hover{
+    background-color: rgb(129, 22, 133);
+    transition-duration: .6s;
+}
+.edit-btn{
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    margin-bottom: 20px;
+    height:30px;
+    width: 100px;
+    padding: 10px 10px;
+    border:1px solid black;
+    cursor: pointer;
+    border-radius: 10px;
+    background-color:rgba(255, 0, 0, 0.386);
+}
+
+.edit-btn:hover{
+    background-color: rgb(129, 22, 133);
+    transition-duration: .6s; 
+}
