@@ -1,4 +1,4 @@
-import React, { useState,useContext,useCallback, useMemo, useEffect} from 'react'
+import React, { useState,useContext, useEffect} from 'react'
 import OfficerForm from './OfficerForm'
 import OfficerList from './OfficerList.js'
 import imageUser1 from '../css/pict/Image.JPG'
@@ -8,29 +8,28 @@ import profile from '../css/profile.css'
 import {UserContext} from '../context/UserProvider.js'
 
 export default function Profile(){
-    // const {userAxios,getUserOfficer, user, allUsers, deleteOfficer } = useContext(UserContext)
+
     const {user :{
         username
      },
       addOfficer,
       officers,
+      allOfficers,
       getUserOfficers,
       getAllOfficers,
       setAllOfficers
     } = useContext(UserContext)
+
+    console.log("officers: ", officers) 
+    console.log("all officers: ", allOfficers)
    
-    // useEffect(() => {
-    //     userAxios.get("/api/security")
-    //         .then(res => setAllOfficers(res.data))
-    //         .catch(err => console.log(err))
-    // }, [])
-    const[fileUrl , setFileUrl] = useState(null)
+    
     return(
         <div className='Style_account'>
             <div className='profile'>
                 <h1>Welcome @{username}</h1>
                 <h3>Add Security Officer</h3>
-                <OfficerForm username = {username} addOfficer = {addOfficer}/>
+                <OfficerForm username = {username} submit = {addOfficer}/>
                 <h3>Your Officer</h3>
                 <OfficerList officers = {officers}/>
             </div>

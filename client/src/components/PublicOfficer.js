@@ -1,10 +1,11 @@
 import React,{useContext , useState, useEffect} from 'react'
 import {UserContext} from '../context/UserProvider'
+import OfficerForm from './OfficerForm'
 
 export default function  PublicOfficer(props){
     const {creater, author , firstName , lastName, status, contact , gender, Email,_id} = props
     const initInputs = {author:"" , firstName:"" , lastName:"", status:"", contact:"" , gender:"", Email:"",_id:"", imgUrl:""}
-    const {userAxios, getUserOfficers, user , allUsers, deleteOfficer} = useContext(UserContext)
+    const {userAxios, getUserOfficers, user , allUsers, deleteOfficer, editOfficer} = useContext(UserContext)
     const [inputs, setInputs ] = useState({initInputs})
     const [editToggle , setEditToggle] = useState(false)
 
@@ -12,6 +13,8 @@ export default function  PublicOfficer(props){
         const {name, value} = e.target
         setInputs(prevState => ({...prevState, [name]: value}))
     }
+
+   
 
 
     useEffect(() =>{
@@ -22,7 +25,9 @@ export default function  PublicOfficer(props){
   return (
       <div className='officer-container'>
         <div className='publicOfficer'>
-        <h2> Author: {author}</h2>
+          { !editToggle ?
+          <>
+                   <h2> Author: {author}</h2>
                    <h2>Fistname: {firstName}</h2>
                     <h2>Lastname: {lastName}</h2>
                     <h3>Status: {status}</h3>
@@ -39,12 +44,27 @@ export default function  PublicOfficer(props){
                     >
                         Edit
                     </button>
-
-        </div>
-
-
-
+          </>
+           :
+           <>
+               <OfficerForm
+               firstName={firstName}
+               lastName={lastName}
+               status={status}
+               _id = {_id}
+               contact={contact}
+               btnText = "SUBMIT EDIT"
+               submit = {editOfficer}
+               />
+               <button onClick={()=>setEditToggle(prevToggle => !prevToggle)}>
+                   Close
+               </button>
+           </>
+              }
+               </div>
+                  
     </div>
+
   )
 }
 

@@ -12,7 +12,7 @@ export default function OfficerForm(props) {
   };
   const [inputs, setInputs] = useState(initInputs);
 
-  const { addOfficer } = props;
+  const { submit } = props;
 
   function handleChange(e) {
     const { name, value } = e.target;
@@ -25,7 +25,8 @@ export default function OfficerForm(props) {
 
   function handleSubmit(e) {
     e.preventDefault();
-    addOfficer(inputs);
+    submit(inputs, props._id);
+    console.log("inputs:", inputs)
     setInputs(initInputs);
   }
 

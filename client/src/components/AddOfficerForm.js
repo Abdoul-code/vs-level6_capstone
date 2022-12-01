@@ -1,7 +1,11 @@
 import React,{useState} from 'react'
 
 function AddOfficerForm(props){
-    const initInputs = {firstName: props.firstName || " ", lastName: props.lastName || " ", status: props.status || " ", contact: props.contact || " "}
+    const initInputs = {
+        firstName: props.firstName || " ",
+        lastName: props.lastName || " ", 
+        status: props.status || " ",
+        contact: props.contact || " "}
     const [inputs , setInputs] = useState(initInputs)
 
     function handleChange(e){
@@ -11,6 +15,7 @@ function AddOfficerForm(props){
 
     function handleSubmit(e){
         e.preventDefault()
+        
         console.log(inputs)
         props.submit(inputs , props._id)
         setInputs(initInputs)

@@ -108,42 +108,28 @@ export default function UserProvider(props){
         .catch(err => console.log(err.response.data.errMsg))
     }
 
-    // function deleteOfficer(officerId){
-    //     userAxios.delete(`/api/security/${officerId}`)
-    //     .then(res => setUserState(prevState => 
-    //         ({
-    //          ...prevState,
-    //         officers:prevState.officers.filter(officer => officer._id !== officerId)
-    //     }
-    //     )))
-        
-    //     let filtered = allOfficers.filter(officer => {
-    //         if(officerId !== officer._id){
-    //             return officer
-    //         }
-    //     })
-        
-    //     setAllOfficers(filtered)
-    //     .catch(err => console.log(err))
-    // }
-
     function deleteOfficer(officerId) {
         userAxios.delete(`/api/security/${officerId}`)
             .then(res => {
                 console.log(res.data)
-                let filterOfficer = allOfficers?.filter(officer => officer._id !== officerId)
-                setAllOfficers(filterOfficer)
+                let filterOfficer = userState.officers?.filter(officer => officer._id !== officerId)
+                setUserState((prev)=> ({
+                    ...prev, 
+                    officers: filterOfficer
+                }))
             })
             .catch(err => console.log(err.response.data.errMsg))
     }
-    
-    function editOfficer(_id, editedOfficer){
+
+    function editOfficer(editedOfficer, _id){
         userAxios.put(`/api/security/${_id}`, editedOfficer)
         .then(res =>{
-            setAllOfficers(prevOfficers => {
-                let getOfficers = prevOfficers.map(officer => officer._id === _id? res.data: officer)
-                return getOfficers
-            })
+            console.log("edit res:", res.data)
+            setUserState(prevState => ({
+                ...prevState,
+                officers: prevState.officers.map(officer => officer._id === _id? res.data: officer)
+                
+            }))
         })
     }
 

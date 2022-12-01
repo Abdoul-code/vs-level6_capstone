@@ -4,7 +4,7 @@ import OfficerForm from './OfficerForm'
 
 function Officer(props){
     const {firstName , lastName, status, contact , gender, Email,_id, imgUrl} = props
-    const {userAxios,getUserOfficer, user, allUsers, deleteOfficer } = useContext(UserContext)
+    const {userAxios,getUserOfficer, user, allUsers, deleteOfficer,editOfficer } = useContext(UserContext)
     const [editToggle , setEditToggle] = useState(false)
 
     return(
@@ -37,7 +37,7 @@ function Officer(props){
                     _id = {_id}
                     contact={contact}
                     btnText = "SUBMIT EDIT"
-                    submit = {props.editOfficer}
+                    submit = {editOfficer}
                     />
                     <button onClick={()=>setEditToggle(prevToggle => !prevToggle)}>
                         Close
